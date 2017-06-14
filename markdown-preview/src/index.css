@@ -7,3 +7,7 @@ body {
 .middle {
   margin: 50px;
 }
+
+.name {
+  margin-left: auto;
+}
