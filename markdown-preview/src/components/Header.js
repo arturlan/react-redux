@@ -7,7 +7,6 @@ class Header extends Component {
 
     return (
       <div className="middle">
-        <h1 className="name">Easy README.md</h1>
       </div>
     )
   }
