@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-class Header extends Component {
+class Footer extends Component {
 
   render() {
     return(
       <div>
-        <h1>Board of trends</h1>
+        <p>New York, NY</p>
       </div>
     );
   }
 }
 
-export default Header;
+export default Footer;
