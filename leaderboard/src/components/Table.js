@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'semantic-ui-react';
+import { Input, Table, Button } from 'semantic-ui-react';
+import axios from 'axios';
 
 class TableBoard extends Component {
   constructor() {
@@ -8,18 +9,25 @@ class TableBoard extends Component {
   }
 
   callToGoogleTrends() {
-
+    axios.get('https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse')
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
     return(
       <div>
+        <Input action='Search' placeholder='Search...' onClick={this.callToGoogleTrends}/>
         <Table celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Name</Table.HeaderCell>
-              <Table.HeaderCell>Header</Table.HeaderCell>
-              <Table.HeaderCell>Header</Table.HeaderCell>
+              <Table.HeaderCell>Author</Table.HeaderCell>
+              <Table.HeaderCell>Book</Table.HeaderCell>
+              <Table.HeaderCell>Year</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -42,9 +50,6 @@ class TableBoard extends Component {
           </Table.Body>
 
         </Table>
-        <Button onClick={this.callToGoogleTrends}>
-          Click Here
-        </Button>
       </div>
     );
   }
