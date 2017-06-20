@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
-import { Input, Table, Button } from 'semantic-ui-react';
-import axios from 'axios';
+import { Table } from 'semantic-ui-react';
+import Search from './Search';
 
 class TableBoard extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
+    this.handleChangefff = this.handleChangefff.bind(this);
   }
 
-  callToGoogleTrends() {
-    axios.get('https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse')
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  handleChangefff(event) {
+    console.log(this.props.value);
   }
 
   render() {
     return(
       <div>
-        <Input action='Search' placeholder='Search...' onClick={this.callToGoogleTrends}/>
+        <Search />
         <Table celled>
           <Table.Header>
             <Table.Row>
