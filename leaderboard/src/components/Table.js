@@ -6,11 +6,26 @@ class TableBoard extends Component {
   constructor(props) {
     super(props);
 
-    this.handleChangefff = this.handleChangefff.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
-  handleChangefff(event) {
-    console.log(this.props.value);
+  componentDidMount(event) {
+    axios({
+      method: 'get',
+      url: `https://www.googleapis.com/books/v1/volumes?q=${this.state.value}&callback=handleResponse`
+    })
+      .then(function(response) {
+        if (response.data !== undefined){
+          this.setState({
+            object: response.data
+          })
+        }
+    });
+    event.preventDefault()
+  }
+
+  componentWillUnmount() {
+    this.serverRequest.abort();
   }
 
   render() {
@@ -45,6 +60,7 @@ class TableBoard extends Component {
           </Table.Body>
 
         </Table>
+        <p>{this.props.data}</p>
       </div>
     );
   }

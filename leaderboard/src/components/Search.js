@@ -1,42 +1,52 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Table from './Table';
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
-      object: []
+      value: ''
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({value: event.target.value});
   }
 
-  handleSubmit(event) {
-    axios({
-    method: 'get',
-    url: `https://www.googleapis.com/books/v1/volumes?q=${this.state.value}&callback=handleResponse`
-    })
-      .then(function(response) {
-      console.log(response.data)
-    });
-    event.preventDefault();
-  }
-
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Enter your book:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-      </form>
+      <div>
+        <Table query={this.state.value} />
+      </div>
     );
+  //   const data = this.state.object;
+  //   if (Object.keys(data).length > 0 && data.constructor === Object){
+  //   return (
+  //     <div>
+  //     <form onSubmit={this.componentDidMount}>
+  //       <label>
+  //         Enter your book:
+  //         <input type="text" value={this.state.value} onChange={this.handleChange} />
+  //       </label>
+  //     </form>
+  //     <Table data={data} />
+  //   </div>
+  //   );
+  // } else {
+  //   return (
+  //     <div>
+  //     <form onSubmit={this.componentDidMount}>
+  //       <label>
+  //         Enter your book:
+  //         <input type="text" value={this.state.value} onChange={this.handleChange} />
+  //       </label>
+  //     </form>
+  //   </div>
+  //   )
+  // }
   }
 }
 
