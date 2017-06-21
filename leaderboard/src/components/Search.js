@@ -4,7 +4,10 @@ import axios from 'axios';
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {
+      value: '',
+      object: []
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,13 +19,11 @@ class Search extends Component {
 
   handleSubmit(event) {
     axios({
-    method:'get',
-    url:`https://www.googleapis.com/books/v1/volumes?q=${this.state.value}&callback=handleResponse`,
-    responseType:'stream'
+    method: 'get',
+    url: `https://www.googleapis.com/books/v1/volumes?q=${this.state.value}&callback=handleResponse`
     })
       .then(function(response) {
-      // response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
-      console.log(response.data);
+      console.log(response.data)
     });
     event.preventDefault();
   }
