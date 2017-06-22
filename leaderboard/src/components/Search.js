@@ -22,13 +22,13 @@ class Search extends Component {
   render() {
     return(
       <div>
-         <form onSubmit={this.handleSubmit}>
+         <form onSubmit={this.componentDidMount}>
            <label>
              Enter your book:
-             <input type="text" onChange={this.handleChange} />
+             <input type="text" value={this.state.value} onChange={this.handleChange} />
            </label>
+           <TableBoard book={this.state.value} />
          </form>
-         <TableBoard book={this.state.value} />
       </div>
     );
   }

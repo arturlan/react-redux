@@ -6,6 +6,14 @@ import Search from './components/Search';
 import Footer from './components/Footer';
 
 class App extends Component {
+  constructor() {
+    super()
+    
+  }
+
+  middle() {
+
+  }
   render() {
     return (
       <div className="App">

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 import axios from 'axios';
 
-
 class TableBoard extends Component {
   constructor(props) {
     super(props);
@@ -13,10 +12,11 @@ class TableBoard extends Component {
   componentDidMount() {
     axios({
       method: 'get',
-      url: `https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse`
+      url: `https://www.googleapis.com/books/v1/volumes?q=${this.props.book}&callback=handleResponse`
     })
     .then(function(response) {
-      console.log(response.data);
+      // console.log(response.data);
+
     });
   }
 
@@ -27,7 +27,6 @@ class TableBoard extends Component {
   render() {
     return(
       <div>
-        <p>{this.props.book}</p>
         <Table celled>
           <Table.Header>
             <Table.Row>
