@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
-import Search from './Search';
+import axios from 'axios';
+
 
 class TableBoard extends Component {
   constructor(props) {
@@ -9,19 +10,14 @@ class TableBoard extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
   }
 
-  componentDidMount(event) {
+  componentDidMount() {
     axios({
       method: 'get',
-      url: `https://www.googleapis.com/books/v1/volumes?q=${this.state.value}&callback=handleResponse`
+      url: `https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse`
     })
-      .then(function(response) {
-        if (response.data !== undefined){
-          this.setState({
-            object: response.data
-          })
-        }
+    .then(function(response) {
+      console.log(response.data);
     });
-    event.preventDefault()
   }
 
   componentWillUnmount() {
@@ -31,7 +27,7 @@ class TableBoard extends Component {
   render() {
     return(
       <div>
-        <Search />
+        <p>{this.props.book}</p>
         <Table celled>
           <Table.Header>
             <Table.Row>
@@ -60,7 +56,6 @@ class TableBoard extends Component {
           </Table.Body>
 
         </Table>
-        <p>{this.props.data}</p>
       </div>
     );
   }

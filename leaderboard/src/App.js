@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
-import TableBoard from './components/Table';
+import Search from './components/Search';
 import Footer from './components/Footer';
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <Header />
-        <TableBoard />
+        <Search />
         <Footer />
       </div>
     );

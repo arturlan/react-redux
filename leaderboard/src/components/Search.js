@@ -1,52 +1,36 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import Table from './Table';
+import TableBoard from './TableBoard';
 
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: ''
-    };
+    this.state = {value: ''};
 
     this.handleChange = this.handleChange.bind(this);
-  }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    }
 
   handleChange(event) {
     this.setState({value: event.target.value});
   }
 
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
   render() {
-    return (
+    return(
       <div>
-        <Table query={this.state.value} />
+         <form onSubmit={this.handleSubmit}>
+           <label>
+             Enter your book:
+             <input type="text" onChange={this.handleChange} />
+           </label>
+         </form>
+         <TableBoard book={this.state.value} />
       </div>
     );
-  //   const data = this.state.object;
-  //   if (Object.keys(data).length > 0 && data.constructor === Object){
-  //   return (
-  //     <div>
-  //     <form onSubmit={this.componentDidMount}>
-  //       <label>
-  //         Enter your book:
-  //         <input type="text" value={this.state.value} onChange={this.handleChange} />
-  //       </label>
-  //     </form>
-  //     <Table data={data} />
-  //   </div>
-  //   );
-  // } else {
-  //   return (
-  //     <div>
-  //     <form onSubmit={this.componentDidMount}>
-  //       <label>
-  //         Enter your book:
-  //         <input type="text" value={this.state.value} onChange={this.handleChange} />
-  //       </label>
-  //     </form>
-  //   </div>
-  //   )
-  // }
   }
 }
 
