@@ -7,6 +7,10 @@
     "google-trends-api": "^4.1.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "redux": "^3.7.0",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^4.3.0",
+    "redux-thunk": "^2.2.0",
     "semantic-ui": "^2.2.10",
     "semantic-ui-react": "^0.68.5"
   },
