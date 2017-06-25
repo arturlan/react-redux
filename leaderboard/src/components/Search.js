@@ -5,23 +5,24 @@ import axios from 'axios';
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {books: []};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({books: event.target.value});
   }
 
   handleSubmit(event) {
     axios({
       method: 'get',
-      url: `https://www.googleapis.com/books/v1/volumes?q=${this.state.value}&callback=handleResponse`
+      type: 'json',
+      url: `https://www.googleapis.com/books/v1/volumes?q=${this.state.books}`
     })
-    .then(function(response) {
-      console.log(response.data);
+    .then((response) => {
+      console.log(response.data.items[0].volumeInfo.title);
     });
     event.preventDefault();
   }
@@ -32,7 +33,7 @@ class Search extends Component {
          <form onSubmit={this.handleSubmit}>
            <label>
              Enter your book:
-             <input type="text" value={this.state.value} onChange={this.handleChange} />
+             <input type="text" value={this.state.books} onChange={this.handleChange} />
            </label>
            <TableBoard />
          </form>
