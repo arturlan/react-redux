@@ -6,7 +6,7 @@ import Search from './components/Search';
 import Footer from './components/Footer';
 
 class App extends Component {
-  
+
   render() {
     return (
       <div className="App">
@@ -15,7 +15,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <Header />
-        <Search middle={} />
+        <Search />
         <Footer />
       </div>
     );

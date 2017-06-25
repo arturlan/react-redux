@@ -1,28 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
-import axios from 'axios';
 
 class TableBoard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.componentDidMount = this.componentDidMount.bind(this);
-  }
-
-  componentDidMount() {
-    axios({
-      method: 'get',
-      url: `https://www.googleapis.com/books/v1/volumes?q=${this.props.book}&callback=handleResponse`
-    })
-    .then(function(response) {
-      // console.log(response.data);
-
-    });
-  }
-
-  componentWillUnmount() {
-    this.serverRequest.abort();
-  }
 
   render() {
     return(

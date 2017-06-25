@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TableBoard from './TableBoard';
+import axios from 'axios';
 
 class Search extends Component {
   constructor(props) {
@@ -15,19 +16,25 @@ class Search extends Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    axios({
+      method: 'get',
+      url: `https://www.googleapis.com/books/v1/volumes?q=${this.state.value}&callback=handleResponse`
+    })
+    .then(function(response) {
+      console.log(response.data);
+    });
     event.preventDefault();
   }
 
   render() {
     return(
       <div>
-         <form onSubmit={this.componentDidMount}>
+         <form onSubmit={this.handleSubmit}>
            <label>
              Enter your book:
              <input type="text" value={this.state.value} onChange={this.handleChange} />
            </label>
-           <TableBoard book={this.state.value} />
+           <TableBoard />
          </form>
       </div>
     );
