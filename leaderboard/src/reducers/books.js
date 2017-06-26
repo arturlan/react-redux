@@ -17,7 +17,7 @@ export function booksIsLoading(state = false, action) {
 export function books(state = [], action) {
     switch (action.type) {
         case 'BOOKS_FETCH_DATA_SUCCESS':
-            return action.items;
+            return action.books;
         default:
             return state;
     }

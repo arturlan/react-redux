@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TableBoard from './TableBoard';
 import axios from 'axios';
+// import { connect } from 'react-redux';
+
 
 class Search extends Component {
   constructor(props) {
@@ -40,6 +42,14 @@ class Search extends Component {
       </div>
     );
   }
+
+  // const mapStateToProps = (state) => {
+  //   return {
+  //       books: state.items,
+  //       hasErrored: state.booksHasErrored,
+  //       isLoading: state.booksIsLoading
+  //   };
+  // };
 }
 
 export default Search;
