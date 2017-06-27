@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import TableBoard from './TableBoard';
-import axios from 'axios';
-// import { connect } from 'react-redux';
 
 
 class Search extends Component {
