@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import { books, booksIsLoading, booksHasErrored} from './books';
+import books from './booksReducer';
 
 export default combineReducers({
   books,
-  booksIsLoading,
-  booksHasErrored
 })
