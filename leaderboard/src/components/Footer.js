@@ -5,7 +5,7 @@ class Footer extends Component {
   render() {
     return(
       <div>
-        <p>New York, NY</p>
+
       </div>
     );
   }

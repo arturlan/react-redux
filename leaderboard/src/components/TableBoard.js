@@ -1,42 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Table } from 'semantic-ui-react';
+import TableCell from './TableCell';
 
-class TableBoard extends Component {
+const TableBoard = (props) => {
+  const bookItem = props.books.map((book) => {
+    console.log(book)
+    return <TableCell book={book} key={book.etag} />;
+  });
+  return(
+    <div>
+      <Table celled>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Author</Table.HeaderCell>
+            <Table.HeaderCell>Book</Table.HeaderCell>
+            <Table.HeaderCell>Year</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
 
-  render() {
-    return(
-      <div>
-        <Table celled>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Author</Table.HeaderCell>
-              <Table.HeaderCell>Book</Table.HeaderCell>
-              <Table.HeaderCell>Year</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            {bookItem}
+          </Table.Row>
+        </Table.Body>
 
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell>First</Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Cell</Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Cell</Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-              <Table.Cell>Cell</Table.Cell>
-            </Table.Row>
-          </Table.Body>
-
-        </Table>
-      </div>
-    );
-  }
+      </Table>
+    </div>
+  );
 }
 
 export default TableBoard;
