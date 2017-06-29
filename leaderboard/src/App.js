@@ -6,6 +6,8 @@ import Search from './components/Search';
 import Footer from './components/Footer';
 import TableBoard from './components/TableBoard';
 import axios from 'axios';
+import _ from 'lodash';
+
 
 class App extends Component {
   constructor(props) {
@@ -15,10 +17,15 @@ class App extends Component {
       books: []
     }
 
+    this.bookSearch('Tostoy');
+  }
+
+  bookSearch(term) {
+    console.log(term);
     axios({
       method: 'get',
       type: 'json',
-      url: `https://www.googleapis.com/books/v1/volumes?q=harry+potter`
+      url: `https://www.googleapis.com/books/v1/volumes?q=${term}`
     })
     .then((books) => {
       this.setState({
@@ -28,6 +35,8 @@ class App extends Component {
   }
 
   render() {
+    const bookSearch = _.debounce(term => { this.bookSearch(term)}, 5000);
+
     return (
       <div className="App">
         <div className="App-header">
@@ -35,7 +44,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <Header />
-        <Search />
+        <Search onSearchTermChange={bookSearch} />
         <TableBoard books={this.state.books} />
         <Footer />
       </div>

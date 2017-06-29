@@ -4,7 +4,6 @@ import TableCell from './TableCell';
 
 const TableBoard = (props) => {
   const bookItem = props.books.map((book) => {
-    console.log(book)
     return <TableCell book={book} key={book.etag} />;
   });
   return(
@@ -19,9 +18,7 @@ const TableBoard = (props) => {
         </Table.Header>
 
         <Table.Body>
-          <Table.Row>
-            {bookItem}
-          </Table.Row>
+          {bookItem}
         </Table.Body>
 
       </Table>
