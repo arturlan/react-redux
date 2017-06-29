@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 // const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 import YTSearch from 'youtube-api-search';
+import _ from 'lodash';
 
 import reducers from './reducers';
 import SearchBar from './components/search_bar';
@@ -21,8 +22,12 @@ class App extends Component {
       videos: [],
       selectedVideo: null
     };
+    this.videoSearch('surfboards');
+  }
 
-    YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+  videoSearch(term) {
+
+    YTSearch({key: API_KEY, term: term}, (videos) => {
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
@@ -32,9 +37,10 @@ class App extends Component {
   }
 
   render() {
+    const videoSearch = _.debounce(term => { this.videoSearch(term)}, 500);
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList onVideoSelect={selectedVideo => this.setState({selectedVideo})} videos={this.state.videos} />
       </div>
