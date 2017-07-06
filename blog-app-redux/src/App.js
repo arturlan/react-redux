@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-
-import PostsIndex from './components/posts_index';
-// import reducers from './reducers';
 import promise from 'redux-promise';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+import PostsIndex from './components/posts_index';
+import PostsNew from './components/post_new';
+import reducers from './reducers';
+
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 class App extends Component {
   render() {
     return (
-      // <Provider store={createStoreWithMiddleware(promise)(reducers)}>
+      <Provider store={createStoreWithMiddleware(reducers)}>
         <div className="App">
           <div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
@@ -22,11 +23,14 @@ class App extends Component {
           </div>
           <BrowserRouter>
             <div>
-              <Route path="/" component={PostsIndex} />
+              <Switch>
+                <Route path="/posts/new" component={PostsNew} />
+                <Route path="/" component={PostsIndex} />
+              </Switch>
             </div>
           </BrowserRouter>
         </div>
-      // </Provider>
+      </Provider>
     );
   }
 }
