@@ -28,3 +28,7 @@ ul, li {
   text-align: left;
   margin: 20px;
 }
+
+.form-control {
+  margin: 20px auto;
+}

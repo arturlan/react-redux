@@ -1,13 +1,34 @@
 import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
+  renderTitleField(field) {
+    return (
+      <div className="form-group">
+        <label>Title</label>
+        <input
+          className="form-control"
+          type="text"
+          {...field.input}
+        />
+      </div>
+    );
+  }
+
   render() {
     return (
       <div>
-        New Post
+        <form>
+          <Field
+            name="title"
+            component={this.renderTitleField}
+          />
+        </form>
       </div>
     );
   }
 }
 
-export default PostsNew;
+export default reduxForm({
+  form: 'simple' // a unique identifier for this form
+})(PostsNew);
