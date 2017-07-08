@@ -1,0 +1,18 @@
+body {
+  background-color: #36474f;
+}
+
+.navbar-header {
+  height: 15px;
+}
+
+.fa.fa-bars {
+  color: #536e7b;
+  margin: 15px 5px;
+}
+
+.center {
+  text-align: center;
+  color: #7dcbc4;
+  margin-top: 15%;
+}
