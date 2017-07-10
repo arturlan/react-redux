@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchWeather } from '../actions/index';
+import { cityToCoords } from '../actions/city_to_coords';
 import axios from 'axios';
+import Card from './card';
 
 
 const GOOGLE_URL = `https://maps.googleapis.com/maps/api/geocode/json?address`;
@@ -25,13 +27,10 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
+    this.props.cityToCoords(this.state.term);
     axios.get(`${GOOGLE_URL}=${this.state.term}`)
-    .then(function (response) {
-      console.log(response)
-      fetchWeather(response);
-    })
-    .catch(function (error) {
-      console.log(error);
+    .then((response) => {
+      this.props.fetchWeather(response);
     });
 
     this.setState({ term: '' });
@@ -40,11 +39,15 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <div className="container for-button">
-          <button type="button" className="btn btn-confirm" data-toggle="modal" data-target=".bs-example-modal-lg">+</button>
-          <p>GET SOME WEATHER</p>
+        <div className="display inline">
+          <Card />
+          <div>
+            <div className="container for-button">
+              <button type="button" className="btn btn-confirm" data-toggle="modal" data-target=".bs-example-modal-lg">+</button>
+              <p>GET SOME WEATHER</p>
+            </div>
+          </div>
         </div>
-
         <div className="modal fade bs-example-modal-lg" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
           <div className="modal-dialog modal-lg" role="document">
             <div className="form input">
@@ -68,7 +71,10 @@ class SearchBar extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchWeather }, dispatch);
+  return bindActionCreators({
+    fetchWeather: fetchWeather,
+    cityToCoords: cityToCoords
+  }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBar);

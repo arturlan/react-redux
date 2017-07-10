@@ -5,6 +5,7 @@ import NavBar from './containers/nav_bar';
 import HomePage from './components/home_page';
 import SearchBar from './containers/search_bar';
 
+
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
